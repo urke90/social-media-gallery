@@ -1,5 +1,17 @@
+// react router dom
+import { Route, Routes, useNavigate } from "react-router-dom";
+
+// pages
+import Login from "@components/Login";
+import Home from "@pages/Home";
+
 const App = () => {
-  return <h1 className="text-3xl font-bold underline">Social Media App</h1>;
+  return (
+    <Routes>
+      <Route path="login" element={<Login />} />
+      <Route path="/*" element={<Home />} />
+    </Routes>
+  );
 };
 
 export default App;
