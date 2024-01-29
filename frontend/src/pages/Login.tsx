@@ -1,15 +1,15 @@
-// react router
-import { useNavigate } from "react-router-dom";
 // google
-import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
+import { CredentialResponse, GoogleLogin } from '@react-oauth/google';
 // jwt
-import { JwtPayload, jwtDecode } from "jwt-decode";
+import { JwtPayload, jwtDecode } from 'jwt-decode';
 // sanity
-import { client } from "@lib/sanity";
-import { IdentifiedSanityDocumentStub } from "@sanity/client";
+import { client } from '@/lib/sanity';
+import { IdentifiedSanityDocumentStub } from '@sanity/client';
+// hooks
+import { useRedirect, useLocalStorage } from '@/hooks';
 // assets
-import { LogoWhiteImg } from "@assets/images";
-import { LoginVideo } from "@assets/videos";
+import { LogoWhiteImg } from '@/assets/images';
+import { LoginVideo } from '@/assets/videos';
 
 // ----------------------------------------------------------------
 
@@ -19,33 +19,34 @@ type GoogleCredentials = JwtPayload & {
   sub: string;
 };
 
-const Login: React.FC = () => {
-  const navigate = useNavigate();
+export const Login: React.FC = () => {
+  const { redirectTo } = useRedirect();
+  const { setLocalStorageItem } = useLocalStorage();
 
   const handleLogin = async (credentialRes: CredentialResponse) => {
     if (!credentialRes || !credentialRes.credential) {
-      console.log("Error with sign in");
+      console.log('Error with sign in');
       return;
     }
 
     const userProfile = jwtDecode<GoogleCredentials>(credentialRes.credential);
-    localStorage.setItem("user", JSON.stringify(userProfile));
+    setLocalStorageItem('user', userProfile);
 
     const { sub, picture, given_name } = userProfile;
 
     const doc: IdentifiedSanityDocumentStub = {
       _id: sub,
-      _type: "user",
+      _type: 'user',
       userName: given_name,
       image: picture,
     };
 
     await client.createIfNotExists(doc);
-    navigate("/", { replace: true });
+    redirectTo('/', { replace: true });
   };
 
   const handleErrorLogin = () => {
-    console.log("Error while login");
+    console.log('Error while login');
   };
 
   return (
@@ -66,5 +67,3 @@ const Login: React.FC = () => {
     </div>
   );
 };
-
-export default Login;
