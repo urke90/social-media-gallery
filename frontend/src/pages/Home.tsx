@@ -1,9 +1,5 @@
-import React from "react";
+// ----------------------------------------------------------------
 
-type Props = {};
-
-const Home = (props: Props) => {
+export const Home: React.FC = () => {
   return <div>Home</div>;
 };
-
-export default Home;
