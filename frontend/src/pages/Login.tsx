@@ -19,7 +19,7 @@ type GoogleCredentials = JwtPayload & {
   sub: string;
 };
 
-export const Login: React.FC = () => {
+const Login: React.FC = () => {
   const { redirectTo } = useRedirect();
   const { setLocalStorageItem } = useLocalStorage();
 
@@ -67,3 +67,5 @@ export const Login: React.FC = () => {
     </div>
   );
 };
+
+export default Login;
