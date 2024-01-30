@@ -10,7 +10,7 @@ import { useQueryUser } from '@/hooks';
 // hooks
 import { useLocalStorage } from '@/hooks';
 // assets
-import { LogoImg } from '@/assets/images';
+import { Logo } from '@/assets/images';
 // pages
 import { Pins } from '.';
 // components
@@ -41,7 +41,7 @@ export const Home: React.FC = () => {
         <div className="p-2 w-full flex flex-row justify-between items-center shadow-md">
           <HiMenu fontSize={40} className="cursor-pointer" onClick={() => setToggleSidebar(true)} />
           <Link to="/">
-            <img src={LogoImg} alt="Logo" className="w-28" />
+            <img src={Logo} alt="Logo" className="w-28" />
           </Link>
           <Link to={`user-profile/${user?._id}`}>
             <img src={sanityUser?.image} alt="Logo" className="w-28" />
