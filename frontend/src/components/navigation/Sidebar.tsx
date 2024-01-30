@@ -1,8 +1,13 @@
+// types
+import { type ISanityUser } from '@/models';
 // ----------------------------------------------------------------
 
-type Props = {};
+type SidebarProps = {
+  user: ISanityUser | null;
+  closeToggle?: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-const Sidebar = (props: Props) => {
+const Sidebar: React.FC<SidebarProps> = (props) => {
   return <div>Sidebar</div>;
 };
 

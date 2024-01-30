@@ -27,6 +27,7 @@
       "@/pages/*": ["src/pages/*"],
       "@/assets/*": ["src/assets/*"],
       "@/lib/*": ["src/lib/*"],
+      "@/models/*": ["src/models/*"],
       "@/router/*": ["src/router/*"],
       "@/hooks/*": ["src/hooks/*"]
     }
