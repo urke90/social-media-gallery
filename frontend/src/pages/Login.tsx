@@ -8,7 +8,7 @@ import { IdentifiedSanityDocumentStub } from '@sanity/client';
 // hooks
 import { useRedirect, useLocalStorage } from '@/hooks';
 // assets
-import { LogoWhiteImg } from '@/assets/images';
+import { LogoWhite } from '@/assets/images';
 import { LoginVideo } from '@/assets/videos';
 
 // ----------------------------------------------------------------
@@ -57,7 +57,7 @@ const Login: React.FC = () => {
         </video>
         <div className="absolute flex flex-col justify-center items-center top-0 left-0 right-0 bottom-0 bg-blackOverlay">
           <div className="p-5">
-            <img src={LogoWhiteImg} width="130px" alt="logo" />
+            <img src={LogoWhite} width="130px" alt="logo" />
           </div>
           <div className="shadow-2xl">
             <GoogleLogin onSuccess={handleLogin} onError={handleErrorLogin} />

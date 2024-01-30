@@ -1,2 +1,2 @@
-export { default as LogoImg } from "./logo.png";
-export { default as LogoWhiteImg } from "./logowhite.png";
+export { default as Logo } from './logo.png';
+export { default as LogoWhite } from './logowhite.png';
