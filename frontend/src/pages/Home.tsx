@@ -63,7 +63,7 @@ export const Home: React.FC = () => {
       <div className="pb-2 flex-1 h-screen overflow-y-scroll" ref={scrollRef}>
         <Routes>
           <Route path="/user-profile/:userId" element={<UserProfile />} />
-          <Route path="/*" element={<Pins user={user} />} />
+          <Route path="/*" element={<Pins user={sanityUser} />} />
           <Route />
         </Routes>
       </div>

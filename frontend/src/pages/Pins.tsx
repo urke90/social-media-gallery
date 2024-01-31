@@ -19,7 +19,7 @@ const Pins: React.FC<PinsProps> = ({ user }) => {
   return (
     <div className="px-2 md:px-5">
       <div className="bg-gray-50">
-        <Navbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <Navbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} user={user} />
       </div>
       <div className="h-full">
         <Routes>
