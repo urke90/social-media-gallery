@@ -14,6 +14,7 @@ export default defineConfig({
       '@/models': path.resolve(__dirname, 'src/models'),
       '@/router': path.resolve(__dirname, 'src/router'),
       '@/hooks': path.resolve(__dirname, 'src/hooks'),
+      '@/api': path.resolve(__dirname, 'src/api'),
     },
   },
 });
