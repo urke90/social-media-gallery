@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { useClient } from '..';
 // types
 import { type ISanityUser } from '@/models';
+// api
+import { generateUserQuery } from '@/api';
 
 // ----------------------------------------------------------------
 
@@ -13,14 +15,14 @@ export const useQueryUser = (userId: string) => {
   const [user, setUser] = useState<ISanityUser | null>(null);
 
   const client = useClient();
-  const query = `*[_type == "user" && _id == '${userId}']`;
+  const USER_QUERY = generateUserQuery(userId);
 
   useEffect(() => {
     const fetchUser = async () => {
       let fetchedUser;
       try {
         setIsLoading(true);
-        fetchedUser = await client.fetch<ISanityUser[]>(query);
+        fetchedUser = await client.fetch<ISanityUser[]>(USER_QUERY);
         setUser(fetchedUser[0]);
         setIsLoading(false);
       } catch (err) {

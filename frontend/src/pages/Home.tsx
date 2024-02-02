@@ -25,6 +25,7 @@ export const Home: React.FC = () => {
 
   const user = getLocalStorageItem('user');
   const { sanityUser } = useQueryUser(user.sub);
+  console.log('sanity user', sanityUser);
 
   useEffect(() => {
     scrollRef.current?.scrollTo(0, 0);
