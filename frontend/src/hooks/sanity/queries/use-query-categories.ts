@@ -2,12 +2,15 @@
 import { useEffect, useState } from 'react';
 // hooks
 import { useClient } from '..';
+// types
+import { type IPost } from '@/models';
+
 // ----------------------------------------------------------------
 
 export const useQueryCategories = (searchQuery: string | undefined) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [pins, setPins] = useState();
+  const [posts, setPosts] = useState<IPost[]>();
   const client = useClient();
 
   const categoryQuery = `*[_type == 'pin' && title match '${searchQuery}*' || category match '${searchQuery}*' || about match '${searchQuery}*']{
@@ -20,14 +23,14 @@ export const useQueryCategories = (searchQuery: string | undefined) => {
         destination,
         postedBy -> {
             _id,
-            uerName,
+            userName,
             image
         },
         save[] {
             _key,
             postedBy -> {
                 _id,
-                useName,
+                userName,
                 image
             },
         },
@@ -43,14 +46,14 @@ export const useQueryCategories = (searchQuery: string | undefined) => {
         destination,
         postedBy -> {
             _id,
-            uerName,
+            userName,
             image
         },
         save[] {
             _key,
             postedBy -> {
                 _id,
-                useName,
+                userName,
                 image
             },
         },
@@ -61,11 +64,11 @@ export const useQueryCategories = (searchQuery: string | undefined) => {
       try {
         setIsLoading(true);
         if (searchQuery) {
-          const pins = await client.fetch(categoryQuery);
-          setPins(pins);
+          const pins = await client.fetch<IPost[]>(categoryQuery);
+          setPosts(pins);
         } else {
-          const pins = await client.fetch(allPostsQuery);
-          setPins(pins);
+          const pins = await client.fetch<IPost[]>(allPostsQuery);
+          setPosts(pins);
         }
         setIsLoading(false);
       } catch (err) {
@@ -80,7 +83,7 @@ export const useQueryCategories = (searchQuery: string | undefined) => {
   return {
     isLoading,
     error,
-    pins,
+    posts,
     clearError,
   };
 };

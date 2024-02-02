@@ -1,12 +1,12 @@
 // ----------------------------------------------------------------
 
-type SearchPinProps = {
+interface ISearchPostProps {
   query: string;
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
-};
+}
 
-const SearchPin: React.FC<SearchPinProps> = (props) => {
+const SearchPost: React.FC<ISearchPostProps> = (props) => {
   return <div>SearchPin</div>;
 };
 
-export default SearchPin;
+export default SearchPost;

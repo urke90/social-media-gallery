@@ -3,7 +3,7 @@ import { useState } from 'react';
 // react router
 import { Routes, Route } from 'react-router-dom';
 // components
-import { Navbar, PinDetail, ImageFeed, SearchPin, CreatePin } from '@/components';
+import { Navbar, PostDetails, ImageFeed, SearchPost, CreatePost } from '@/components';
 
 // ----------------------------------------------------------------
 
@@ -25,11 +25,11 @@ const Pins: React.FC<PinsProps> = ({ user }) => {
         <Routes>
           <Route path="/" element={<ImageFeed />} />
           <Route path="/category/:categoryId" element={<ImageFeed />} />
-          <Route path="/pin-detail/:pinId" element={<PinDetail user={user} />} />
-          <Route path="/create-pin" element={<CreatePin user={user} />} />
+          <Route path="/pin-detail/:pinId" element={<PostDetails user={user} />} />
+          <Route path="/create-pin" element={<CreatePost user={user} />} />
           <Route
             path="/search"
-            element={<SearchPin query={searchQuery} setSearchQuery={setSearchQuery} />}
+            element={<SearchPost query={searchQuery} setSearchQuery={setSearchQuery} />}
           />
         </Routes>
       </div>
