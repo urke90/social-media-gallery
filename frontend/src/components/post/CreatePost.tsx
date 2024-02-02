@@ -3,12 +3,12 @@ import { type ISanityUser } from '@/models';
 
 // ----------------------------------------------------------------
 
-type CreatePinProps = {
+interface ICreatePostProps {
   user: ISanityUser | null;
-};
+}
 
-const CreatePin: React.FC<CreatePinProps> = (props) => {
+const CreatePost: React.FC<ICreatePostProps> = (props) => {
   return <div>CreatePin</div>;
 };
 
-export default CreatePin;
+export default CreatePost;

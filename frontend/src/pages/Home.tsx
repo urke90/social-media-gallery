@@ -12,7 +12,7 @@ import { useLocalStorage } from '@/hooks';
 // assets
 import { Logo } from '@/assets/images';
 // pages
-import { Pins } from '.';
+import { Posts } from '.';
 // components
 import { Sidebar, UserProfile } from '@/components';
 
@@ -61,7 +61,7 @@ export const Home: React.FC = () => {
       <div className="pb-2 flex-1 h-screen overflow-y-scroll" ref={scrollRef}>
         <Routes>
           <Route path="/user-profile/:userId" element={<UserProfile />} />
-          <Route path="/*" element={<Pins user={sanityUser} />} />
+          <Route path="/*" element={<Posts user={sanityUser} />} />
           <Route />
         </Routes>
       </div>
