@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { useClient } from '..';
 // types
 import { type IPost } from '@/models';
+// api
+import { generateCategoryQuery, ALL_POSTS } from '@/api';
 
 // ----------------------------------------------------------------
 
@@ -13,62 +15,18 @@ export const useQueryCategories = (searchQuery: string | undefined) => {
   const [posts, setPosts] = useState<IPost[]>();
   const client = useClient();
 
-  const categoryQuery = `*[_type == 'pin' && title match '${searchQuery}*' || category match '${searchQuery}*' || about match '${searchQuery}*']{
-        image {
-            asset -> {
-                url
-            }
-        },
-        _id,
-        destination,
-        postedBy -> {
-            _id,
-            userName,
-            image
-        },
-        save[] {
-            _key,
-            postedBy -> {
-                _id,
-                userName,
-                image
-            },
-        },
-      }`;
-
-  const allPostsQuery = `*[_type == 'pin'] | order(_createdAt desc) {
-        image {
-            asset -> {
-                url
-            }
-        },
-        _id,
-        destination,
-        postedBy -> {
-            _id,
-            userName,
-            image
-        },
-        save[] {
-            _key,
-            postedBy -> {
-                _id,
-                userName,
-                image
-            },
-        },
-      }`;
+  const SPECIFIC_CATEGORY = generateCategoryQuery(searchQuery);
 
   useEffect(() => {
     const fetchPins = async () => {
       try {
         setIsLoading(true);
         if (searchQuery) {
-          const pins = await client.fetch<IPost[]>(categoryQuery);
-          setPosts(pins);
+          const posts = await client.fetch<IPost[]>(SPECIFIC_CATEGORY);
+          setPosts(posts);
         } else {
-          const pins = await client.fetch<IPost[]>(allPostsQuery);
-          setPosts(pins);
+          const posts = await client.fetch<IPost[]>(ALL_POSTS);
+          setPosts(posts);
         }
         setIsLoading(false);
       } catch (err) {
