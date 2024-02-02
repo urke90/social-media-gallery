@@ -8,6 +8,8 @@ import { type ISanityUser } from '@/models';
 // ----------------------------------------------------------------
 
 export const useQueryUser = (userId: string) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [user, setUser] = useState<ISanityUser | null>(null);
 
   const client = useClient();
@@ -17,19 +19,24 @@ export const useQueryUser = (userId: string) => {
     const fetchUser = async () => {
       let fetchedUser;
       try {
+        setIsLoading(true);
         fetchedUser = await client.fetch<ISanityUser[]>(query);
         setUser(fetchedUser[0]);
+        setIsLoading(false);
       } catch (err) {
-        throw new Error('Error fetching user from server');
+        setError('Error while fetching the user details!');
       }
-
-      console.log('fetchedUser', fetchedUser);
     };
 
     fetchUser();
   }, []);
 
+  const clearError = () => setError(null);
+
   return {
+    isLoading,
     sanityUser: user,
+    error,
+    clearError,
   };
 };

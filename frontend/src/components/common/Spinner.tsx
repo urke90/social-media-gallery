@@ -15,8 +15,8 @@ const Spinner: React.FC<ISpinnerProps> = ({
   ...rest
 }) => {
   return (
-    <div className="flex flex-col justify-center item-center w-full, h-full">
-      <ThreeCircles color={color} height={height} width={width} wrapperClass="m-5" {...rest} />
+    <div className="flex flex-col justify-center items-center w-full h-full">
+      <ThreeCircles color={color} height={height} width={width} wrapperClass="m-15" {...rest} />
       {message && <div className="text-lg text-center px-2">{message}</div>}
     </div>
   );

@@ -13,7 +13,6 @@ type NavbarProps = {
 };
 
 const Navbar: React.FC<NavbarProps> = ({ searchQuery, setSearchQuery, user }) => {
-  console.log('user', user);
   const navigate = useNavigate();
 
   if (!user) return null;

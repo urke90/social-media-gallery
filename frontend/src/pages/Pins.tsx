@@ -23,8 +23,8 @@ const Pins: React.FC<PinsProps> = ({ user }) => {
       </div>
       <div className="h-full">
         <Routes>
-          <Route path="/" />
-          <Route path="/category/:categoryId" />
+          <Route path="/" element={<ImageFeed />} />
+          <Route path="/category/:categoryId" element={<ImageFeed />} />
           <Route path="/pin-detail/:pinId" element={<PinDetail user={user} />} />
           <Route path="/create-pin" element={<CreatePin user={user} />} />
           <Route
