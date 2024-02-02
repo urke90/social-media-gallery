@@ -10,16 +10,12 @@
   "parser": "@typescript-eslint/parser",
   "plugins": ["react-refresh", "@typescript-eslint", "prettier"],
   "rules": {
-    "react-refresh/only-export-components": [
-      "warn",
-      { "allowConstantExport": true }
-    ],
+    "react-refresh/only-export-components": ["warn", { "allowConstantExport": true }],
     "no-unused-vars": "warn",
     "@typescript-eslint/no-unused-vars": "warn",
     // hooks
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-
     "@typescript-eslint/ban-types": "warn"
   },
   "parserOptions": {

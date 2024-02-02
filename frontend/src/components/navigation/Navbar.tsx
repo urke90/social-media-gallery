@@ -6,14 +6,16 @@ import { type ISanityUser } from '@/models';
 
 // ----------------------------------------------------------------
 
-type NavbarProps = {
+interface INavbarProps {
   searchQuery: string;
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
   user: ISanityUser | null;
-};
+}
 
-const Navbar: React.FC<NavbarProps> = ({ searchQuery, setSearchQuery, user }) => {
+const Navbar: React.FC<INavbarProps> = ({ searchQuery, setSearchQuery, user }) => {
   const navigate = useNavigate();
+
+  console.log('user u navbar', user);
 
   if (!user) return null;
 

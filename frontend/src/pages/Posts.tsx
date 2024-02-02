@@ -2,19 +2,21 @@
 import { useState } from 'react';
 // react router
 import { Routes, Route } from 'react-router-dom';
+// types
+import { type ISanityUser } from '@/models';
 // components
 import { Navbar, PostDetails, ImageFeed, SearchPost, CreatePost } from '@/components';
 
 // ----------------------------------------------------------------
 
-import { ISanityUser } from '@/models';
-
-type PinsProps = {
+interface PostsProps {
   user: ISanityUser | null;
-};
+}
 
-const Pins: React.FC<PinsProps> = ({ user }) => {
+const Posts: React.FC<PostsProps> = ({ user }) => {
   const [searchQuery, setSearchQuery] = useState('');
+
+  console.log('user in posts', user);
 
   return (
     <div className="px-2 md:px-5">
@@ -37,4 +39,4 @@ const Pins: React.FC<PinsProps> = ({ user }) => {
   );
 };
 
-export default Pins;
+export default Posts;

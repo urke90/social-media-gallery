@@ -6,6 +6,7 @@ export interface IPost {
       url: string;
     };
   };
+  _id: string;
   postedBy: {
     image: string;
     userName: string;

@@ -1,3 +1,14 @@
+/**
+ * USER
+ */
+
+export const generateUserQuery = (userId = '') => {
+  return `*[_type == "user" && _id == '${userId}']`;
+};
+
+/**
+ * POSTS
+ */
 export const ALL_POSTS = `*[_type == 'pin'] | order(_createdAt desc) {
     image {
         asset -> {
