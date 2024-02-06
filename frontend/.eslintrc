@@ -8,14 +8,14 @@
   ],
   "ignorePatterns": ["dist", ".eslintrc.cjs"],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["react-refresh", "@typescript-eslint", "prettier"],
+  "plugins": ["react-hooks", "react-refresh", "@typescript-eslint", "prettier"],
   "rules": {
     "react-refresh/only-export-components": ["warn", { "allowConstantExport": true }],
     "no-unused-vars": "warn",
     "@typescript-eslint/no-unused-vars": "warn",
     // hooks
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/exhaustive-deps": "error",
     "@typescript-eslint/ban-types": "warn"
   },
   "parserOptions": {

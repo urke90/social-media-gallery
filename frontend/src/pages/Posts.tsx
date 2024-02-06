@@ -16,8 +16,6 @@ interface PostsProps {
 const Posts: React.FC<PostsProps> = ({ user }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
-  console.log('user in posts', user);
-
   return (
     <div className="px-2 md:px-5">
       <div className="bg-gray-50">

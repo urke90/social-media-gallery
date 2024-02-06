@@ -9,7 +9,7 @@ import { generateUserQuery } from '@/api';
 
 // ----------------------------------------------------------------
 
-export const useQueryUser = (userId: string) => {
+export const useQueryUser = (userId?: string) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [user, setUser] = useState<ISanityUser | null>(null);

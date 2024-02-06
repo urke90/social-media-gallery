@@ -1,7 +1,7 @@
 export const useLocalStorage = () => {
-  const getLocalStorageItem = (key: string) => {
-    const item = localStorage.getItem(key) ?? '';
-    return JSON.parse(item);
+  const getLocalStorageItem = <T>(key: string) => {
+    const item = localStorage.getItem(key);
+    return item ? (JSON.parse(item) as T) : null;
   };
 
   const setLocalStorageItem = (key: string, item: any) => {

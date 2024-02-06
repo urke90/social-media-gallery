@@ -10,7 +10,7 @@ import { MasonryLayout, Spinner } from '..';
 
 interface IImageFeedProps {}
 
-const ImageFeed: React.FC<IImageFeedProps> = (props) => {
+const ImageFeed: React.FC<IImageFeedProps> = () => {
   const { categoryId } = useParams<{ categoryId: string }>();
   const { isLoading, posts, error } = useQueryCategories(categoryId);
 

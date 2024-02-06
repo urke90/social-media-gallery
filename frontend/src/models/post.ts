@@ -12,5 +12,12 @@ export interface IPost {
     userName: string;
     _id: string;
   };
-  save: unknown[] | null;
+  save: {
+    _key: string;
+    postedBy: {
+      _id: string;
+      userName: string;
+      image: string;
+    };
+  }[];
 }

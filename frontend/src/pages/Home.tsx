@@ -15,6 +15,7 @@ import { Logo } from '@/assets/images';
 import { Posts } from '.';
 // components
 import { Sidebar, UserProfile } from '@/components';
+import { IGoogleUser } from '@/models';
 
 // ----------------------------------------------------------------
 
@@ -23,9 +24,8 @@ export const Home: React.FC = () => {
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
-  const user = getLocalStorageItem('user');
-  const { sanityUser } = useQueryUser(user.sub);
-  console.log('sanity user', sanityUser);
+  const user = getLocalStorageItem<IGoogleUser>('user');
+  const { sanityUser } = useQueryUser(user?.sub);
 
   useEffect(() => {
     scrollRef.current?.scrollTo(0, 0);
@@ -42,7 +42,7 @@ export const Home: React.FC = () => {
           <Link to="/">
             <img src={Logo} alt="Logo" className="w-28" />
           </Link>
-          <Link to={`user-profile/${user?._id}`}>
+          <Link to={`user-profile/${sanityUser?._id}`}>
             <img src={sanityUser?.image} alt="Logo" className="w-28" />
           </Link>
         </div>
