@@ -14,9 +14,6 @@ interface INavbarProps {
 
 const Navbar: React.FC<INavbarProps> = ({ searchQuery, setSearchQuery, user }) => {
   const navigate = useNavigate();
-
-  console.log('user u navbar', user);
-
   if (!user) return null;
 
   return (
