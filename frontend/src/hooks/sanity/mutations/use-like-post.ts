@@ -12,10 +12,10 @@ interface ISavePost {
   postId: string;
 }
 
-export const useSavePost = () => {
+export const useLikePost = () => {
   const client = useClient();
 
-  const handleSavePost = async ({ isPostSaved, postId, userId }: ISavePost) => {
+  const handleLikePost = async ({ isPostSaved, postId, userId }: ISavePost) => {
     if (!isPostSaved) {
       await client
         .patch(postId)
@@ -35,5 +35,5 @@ export const useSavePost = () => {
     }
   };
 
-  return handleSavePost;
+  return handleLikePost;
 };

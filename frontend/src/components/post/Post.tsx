@@ -3,22 +3,21 @@ import { useState } from 'react';
 // react router
 import { useNavigate, Link } from 'react-router-dom';
 // uuid
-import { v4 as uuidv4 } from 'uuid';
 // react icons
 import { AiTwotoneDelete } from 'react-icons/ai';
 import { MdDownloadForOffline } from 'react-icons/md';
 import { BsFillArrowUpRightCircleFill } from 'react-icons/bs';
 // hooks
-import { useClient, useDeletePost, useSavePost } from '@/hooks';
+import { useDeletePost, useLikePost } from '@/hooks';
 import { useLocalStorage } from '@/hooks';
 // types
 import { urlFor } from '@/lib';
-import { type IPost, IGoogleUser } from '@/models';
+import { type ISanityPost, IGoogleUser } from '@/models';
 
 // ----------------------------------------------------------------
 
 interface IPostProps {
-  post: IPost;
+  post: ISanityPost;
 }
 
 // TODO: 2.36.16 finish commented out code
@@ -28,8 +27,7 @@ const Post: React.FC<IPostProps> = ({ post }) => {
   const user = getLocalStorageItem<IGoogleUser>('user');
   const navigate = useNavigate();
   const [isPostHovered, setIsPostHovered] = useState(false);
-  const client = useClient();
-  const handleSavePost = useSavePost();
+  const handleLikePost = useLikePost();
   const handleDeletePost = useDeletePost();
 
   const { _id, destination, image, postedBy, save } = post;
@@ -38,17 +36,12 @@ const Post: React.FC<IPostProps> = ({ post }) => {
 
   if (!user) return null;
 
-  const deletePost = async (id: string) => {
-    await client.delete(id);
-    window.location.reload();
-  };
-
   return (
     <div className="m-2">
       <div
         onMouseEnter={() => setIsPostHovered(true)}
         onMouseLeave={() => setIsPostHovered(false)}
-        onClick={() => navigate(`/pin-details/${_id}`)}
+        onClick={() => navigate(`/post-details/${_id}`)}
         className="relative cursor-zoom-in w-auto hover:shadow-lg rounded-lg overflow-hidden transition-all duration-500 ease-in-out"
       >
         <img
@@ -77,7 +70,7 @@ const Post: React.FC<IPostProps> = ({ post }) => {
                   type="button"
                   className="bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outline-none"
                 >
-                  {save?.length} Saved
+                  {save?.length} Liked
                 </button>
               ) : (
                 <button
@@ -85,10 +78,10 @@ const Post: React.FC<IPostProps> = ({ post }) => {
                   className="bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outline-none"
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleSavePost({ isPostSaved, postId: _id, userId: user.sub });
+                    handleLikePost({ isPostSaved, postId: _id, userId: user.sub });
                   }}
                 >
-                  Save
+                  Like
                 </button>
               )}
             </div>

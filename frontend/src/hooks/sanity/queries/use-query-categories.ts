@@ -3,29 +3,30 @@ import { useCallback, useEffect, useState } from 'react';
 // hooks
 import { useClient } from '..';
 // types
-import { type IPost } from '@/models';
+import { type ISanityPost } from '@/models';
 // api
-import { generateCategoryQuery, ALL_POSTS } from '@/api';
+import { categoryQuery, POSTS_QUERY } from '@/api';
 
 // ----------------------------------------------------------------
 
 export const useQueryCategories = (searchQuery: string | undefined) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [posts, setPosts] = useState<IPost[]>();
+  const [posts, setPosts] = useState<ISanityPost[]>();
   const client = useClient();
 
-  const SPECIFIC_CATEGORY = generateCategoryQuery(searchQuery);
+  const SPECIFIC_CATEGORY = categoryQuery(searchQuery);
 
-  const fetchPins = useCallback(async () => {
+  const fetchPosts = useCallback(async () => {
     setIsLoading(true);
     setError(null);
     try {
       if (searchQuery) {
-        const posts = await client.fetch<IPost[]>(SPECIFIC_CATEGORY);
+        const posts = await client.fetch<ISanityPost[]>(SPECIFIC_CATEGORY);
+        console.log('posts', posts);
         setPosts(posts);
       } else {
-        const posts = await client.fetch<IPost[]>(ALL_POSTS);
+        const posts = await client.fetch<ISanityPost[]>(POSTS_QUERY);
         setPosts(posts);
       }
       setIsLoading(false);
@@ -36,7 +37,7 @@ export const useQueryCategories = (searchQuery: string | undefined) => {
   }, []);
 
   useEffect(() => {
-    fetchPins();
+    fetchPosts();
   }, [searchQuery]);
 
   const clearError = () => setError(null);

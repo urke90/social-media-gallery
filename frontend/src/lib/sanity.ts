@@ -6,7 +6,7 @@ const config: ClientConfig = {
   projectId: import.meta.env.VITE_SANITY_PROJECT_ID,
   dataset: 'production',
   apiVersion: '2024-01-28',
-  useCdn: true,
+  useCdn: false,
   token: import.meta.env.VITE_SANITY_API_TOKEN,
 };
 
