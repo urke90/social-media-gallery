@@ -30,7 +30,8 @@
       "@/models/*": ["src/models/*"],
       "@/router/*": ["src/router/*"],
       "@/hooks/*": ["src/hooks/*"],
-      "@/api/*": ["src/api/*"]
+      "@/api/*": ["src/api/*"],
+      "@/mock/*": ["src/mock/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],

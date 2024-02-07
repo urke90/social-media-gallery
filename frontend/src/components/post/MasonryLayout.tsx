@@ -1,14 +1,14 @@
 // react masonry
 import Masonry from 'react-masonry-css';
 // types
-import { type IPost } from '@/models';
+import { type ISanityPost } from '@/models';
 // components
 import { Post } from '..';
 
 // ----------------------------------------------------------------
 
 interface IMasonryLayoutProps {
-  posts: IPost[];
+  posts: ISanityPost[];
 }
 
 // object for showing num of cols for Masonry layout component

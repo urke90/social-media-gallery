@@ -1,5 +1,5 @@
 // This is category object i expect to receive from Sanity
-export interface IPost {
+export interface ISanityPost {
   destination: string;
   image: {
     asset: {

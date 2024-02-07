@@ -8,7 +8,5 @@ export const useRedirect = () => {
 
   const redirectTo = (href: string, options?: NavigateOptions) => navigate(href, options);
 
-  return {
-    redirectTo,
-  };
+  return redirectTo;
 };

@@ -5,7 +5,7 @@ import { useClient } from '..';
 // types
 import { type ISanityUser } from '@/models';
 // api
-import { generateUserQuery } from '@/api';
+import { userQuery } from '@/api';
 
 // ----------------------------------------------------------------
 
@@ -15,7 +15,7 @@ export const useQueryUser = (userId?: string) => {
   const [user, setUser] = useState<ISanityUser | null>(null);
 
   const client = useClient();
-  const USER_QUERY = generateUserQuery(userId);
+  const USER_QUERY = userQuery(userId);
 
   useEffect(() => {
     const fetchUser = async () => {

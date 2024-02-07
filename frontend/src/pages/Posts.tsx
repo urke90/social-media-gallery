@@ -25,8 +25,8 @@ const Posts: React.FC<PostsProps> = ({ user }) => {
         <Routes>
           <Route path="/" element={<ImageFeed />} />
           <Route path="/category/:categoryId" element={<ImageFeed />} />
-          <Route path="/pin-detail/:pinId" element={<PostDetails user={user} />} />
-          <Route path="/create-pin" element={<CreatePost user={user} />} />
+          <Route path="/post-detail/:postId" element={<PostDetails user={user} />} />
+          <Route path="/create-post" element={<CreatePost user={user} />} />
           <Route
             path="/search"
             element={<SearchPost query={searchQuery} setSearchQuery={setSearchQuery} />}
